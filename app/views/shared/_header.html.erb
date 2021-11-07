@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <div class="container">
+    <ul class="ml-auto navbar-nav">
+      <% if current_user.present? %>
+          <li class="nav-item dropdown mx-2">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= current_user.full_name %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="<%= change_password_path %>">Change Password</a>
+              <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+            </div>
+          </li>
+          <% unless current_page?(new_post_path) %>
+              <li class="nav-item mx-2  mb-sm-2 mb-md-2 mb-lg-0">
+                <%= link_to '+ Add Post', new_post_path, class: "btn btn-primary btn-pill mb-2 mb-sm-2 mb-md-0 mb-lg-0" %>
+              </li>
+          <% end %>
+      <% else %>
+          <li class="nav-item mr-3">
+            <%= link_to 'Sign in', new_user_session_path, class: 'btn btn-sm btn-primary px-5' %>
+          </li>
+          <li class="nav-item mr-3">
+            <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-sm btn-outline-primary px-5' %>
+
+          </li>
+      <% end %>
+
+    </ul>
+  </div>
+  </div>
+</nav>
+

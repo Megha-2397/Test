@@ -1,0 +1,42 @@
+<div class="container my-5">
+  <%= form_for @post do |f| %>
+
+      <div class="row">
+        <div class="col-lg-8 offset-2">
+
+          <div class="form-group">
+            <label class="input-label">Author Name</label>
+            <%= f.text_field :user_id, value: current_user.full_name, class: "form-control", readonly: true %>
+          </div>
+          <div class="form-group">
+            <label class="input-label">Title</label>
+            <%= f.text_field :title, class: "form-control", required: true %>
+          </div>
+          <div class="form-group">
+            <label class="input-label">Description</label>
+            <%= f.text_area :description, class: "form-control", required: true %>
+          </div>
+
+          <div class="form-group">
+            <label class="input-label">Date</label>
+            <div class="card card-editor">
+              <div class="content-editor">
+                <%= f.text_field :post_date, class: "form-control basicDate", required: true %>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="input-label">Category</label>
+            <%= f.select :category_id, Category.all.map {|c| [c.name, c.id]}, {include_blank: "Select Category"}, class: 'custome-select2 custom-select', required: true %>
+          </div>
+          <div class="col-auto text-center">
+            <%= link_to "Discard", posts_path, class: "btn btn-outline-primary mr-2" %>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+
+        </div>
+
+      </div>
+
+  <% end %>
+</div>

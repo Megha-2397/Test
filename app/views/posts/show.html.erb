@@ -1,0 +1,53 @@
+<div class="container content-space-t-3 content-space-t-lg-4 content-space-b-2">
+  <%= link_to "Dashboard", root_path, class: "breadcrumb-link" %>/
+  <%= @post.title %>
+  <div class="w-lg-65 mx-lg-auto">
+    <div class="mb-4">
+      <h1 class="h2"><%= @post.title %></h1>
+    </div>
+
+    <div class="row align-items-sm-center mb-5">
+      <div class="col-sm-7 mb-4 mb-sm-0">
+        <div class="d-flex align-items-center">
+          <div class="flex-grow-1 ms-3">
+            <h5 class="mb-0">
+              <p><%= @post.user.full_name %></p>
+            </h5>
+            <span class="d-block small"><%= @post.post_date.strftime("%d %b, %Y") %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p><%= @post.description %></p>
+  </div>
+</div>
+
+<div class="container">
+  <% if current_user != @post.user %>
+      <div class="row p-1">
+        <div class="col-md-12">
+          <%= form_for 'post_comment', url: post_comments_path(id: @post), method: :post, remote: true do |f| %>
+              <div class="form-group ml-0">
+                <%= f.text_area :comment, class: "form-control comment-txt", placeholder: "Add a comment here", required: true %>
+              </div>
+              <% if current_user.present? %>
+                  <div class="form-group mr-3">
+                    <%= f.submit "Submit", class: "btn btn-primary float-left" %>
+                  </div>
+              <% else %>
+                  <div class="form-group mr-3">
+                    <%= link_to "Submit", new_user_session_path, class: "btn btn-primary float-left" %>
+                  </div>
+              <% end %>
+          <% end %>
+        </div>
+      </div>
+  <% end %>
+  <div class="text-center m-5">
+    <h2 class="text-center sec-heading">Post Comments</h2>
+  </div>
+  <div class="comment">
+    <%= render 'posts/comments', comments: @comments %>
+  </div>
+</div>

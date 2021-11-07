@@ -1,0 +1,9 @@
+<div class="media d-block d-sm-flex review mb-3 rounded border-0">
+
+  <div class="media-body">
+    <small class="text-muted small"><%= c.user.full_name %></small>
+    <p class="text-muted small"> <%= c.created_at.strftime("%d %b, %Y") %></p>
+    <p> <%= c.comment %></p>
+  </div>
+</div>
+<hr />
