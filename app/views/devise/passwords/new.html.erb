@@ -1,0 +1,24 @@
+<section class="bg-light">
+  <div class="container px-3">
+    <div class="login-pages shadow  my-5">
+      <div class="modal-header px-0 border-0 mb-4">
+        <h5 class="modal-title">Forgot your password?</h5>
+      </div>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post}) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+
+          <div class="form-group">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email" %>
+          </div>
+          <div class="text-center mt-3">
+            <%= f.submit "Continue", class: "btn btn-primary btn-md px-8 mb-5" %>
+          </div>
+      <% end %>
+      <div class="w-100 text-center">
+        <%= link_to "BACK TO LOGIN", new_user_session_path, class: "font-weight-semi-bold" %>
+      </div>
+    </div>
+
+  </div>
+</section>
+<%#= render "devise/shared/links" %>
