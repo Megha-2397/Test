@@ -16,12 +16,13 @@ require("jquery")
 require("bootstrap")
 require("popper.js")
 require("../custom/custom");
-require("jquery-validation");
 require("flatpickr");
 
 global.$ = jQuery;
 import Swal from 'sweetalert2'
 window.Swal = Swal
+import flatpickr from 'flatpickr'
+window.flatpickr = flatpickr
 import 'select2'
 import 'bootstrap'
 import "../stylesheets/application.scss"
